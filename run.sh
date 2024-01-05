@@ -16,15 +16,14 @@ do
 	echo "$i"
 	for b in "${x[@]}"
 	do
-		if [ $f -eq 4 ]
+		if [ $(expr $f % 3) != 0 ]
 		then
-			((f=1))
 			echo $f. "$b"
 			((f++))
-		#if [ $f -lt 3 ]
 		else
-			echo $f. "$b"
 			((f++))
+			echo $f. "$b"
+			break
 		fi
 	done
 done
