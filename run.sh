@@ -21,7 +21,6 @@ do
 			echo $f. "$b"
 			((f++))
 		else
-			((f++))
 			echo $f. "$b"
 			break
 		fi
