@@ -9,7 +9,7 @@ IFS=$'\n' read -rd '' -a y <<<"$cams_names"
 cams_names_input_spliter=$'\n' read -rd '' -a x <<<"$cams_names_input"
 
 
-echo 'Do you want to use: 
+echo 'Which would you like to use: 
 '
 for i in "${y[@]}"
 do
@@ -22,6 +22,7 @@ do
 			((f++))
 		else
 			echo $f. "$b"
+			((f++))
 			break
 		fi
 	done
