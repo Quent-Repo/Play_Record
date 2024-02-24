@@ -1,7 +1,7 @@
 #/bin/sh
 #v4l2-ctl --list-devices
 
-##Gets the cams and puts them into
+##Gets the cams and puts them intou
 f=1
 cams_names=$(v4l2-ctl --list-devices | grep -E -i '.+:$')
 cams_names_input=$(v4l2-ctl --list-devices | grep -E -i '/\w+/.+')
