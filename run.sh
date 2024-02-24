@@ -32,6 +32,7 @@ read option
 echo ${x[$option-1]}
 
 ## Opens new term to run ffplay. (Thing to note here is that *roxterm* need to to changed to what every term is running on device i.e gnome-terminal -e, xterm -e, konsole -e)
+## could do some kind of error handle and use a list to see which one will work or use ``` ps -aux | grep `ps -p $$ -o ppid=` ``` to get the terminal name
 roxterm -e ffplay -i ${x[$option-1]} -framerate 60 -video_size 640x360  ; sleep 2
 
 
