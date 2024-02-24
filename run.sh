@@ -31,23 +31,22 @@ echo 'Pick a number: '
 read option
 echo ${x[$option-1]}
 
+## Opens new term to run ffplay. (Thing to note here is that *roxterm* need to to changed to what every term is running on device i.e gnome-terminal -e, xterm -e, konsole -e)
 roxterm -e ffplay -i ${x[$option-1]} -framerate 60 -video_size 640x360  ; sleep 2
-#ffmpeg -i ${x[$option-1]} -framerate 60 -video_size 640x360 test.mkv
-
-### above is all working
 
 
+##Gets all the information on the ffplay video
 r=$(wmctrl -l | grep -E -i '\/dev+\/\w+' | cut -d' ' -f1)
 xwininfo -id $r
 
 x_value=$(xwininfo -id $r | grep 'Absolute upper-left X')
-
 y_value=$(xwininfo -id $r | grep 'Absolute upper-left Y')
 
-
+##The numbers for the Absolute upper X and Y
 last_x=$(echo $x_value | grep -Eo '[0-9]{1,4}')
 last_y=$(echo $y_value | grep -Eo '[0-9]{1,4}')
 
 echo "---------------------------------------------------"
 
+##Record The ffplay
 ffmpeg -f x11grab -video_size 640x360 -framerate 10 -i :0.0+$last_x,$last_y -vf format=yuv420p test.mp4
