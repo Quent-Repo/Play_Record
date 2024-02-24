@@ -44,9 +44,10 @@ x_value=$(xwininfo -id $r | grep 'Absolute upper-left X')
 
 y_value=$(xwininfo -id $r | grep 'Absolute upper-left Y')
 
-echo $x_value
-c=$(x_value | grep -E -i '/\d+')
-echo $c
+
+last_x=$(echo $x_value | grep -Eo '[0-9]{1,4}')
+last_y=$(echo $y_value | grep -Eo '[0-9]{1,4}')
+
 echo "---------------------------------------------------"
 
-ffmpeg -f x11grab -video_size 640x360 -framerate 10 -i :0.0+799,511 -vf format=yuv420p test.mp4
+ffmpeg -f x11grab -video_size 640x360 -framerate 10 -i :0.0+$last_x,$last_y -vf format=yuv420p test.mp4
