@@ -47,7 +47,9 @@ y_value=$(xwininfo -id $r | grep 'Absolute upper-left Y')
 last_x=$(echo $x_value | grep -Eo '[0-9]{1,4}')
 last_y=$(echo $y_value | grep -Eo '[0-9]{1,4}')
 
+date_name=$(date +"%Y-%m-%d-%H.%M.%S")
+
 echo "---------------------------------------------------"
 
 ##Record The ffplay
-ffmpeg -f x11grab -video_size 640x360 -framerate 10 -i :0.0+$last_x,$last_y -vf format=yuv420p test.mp4
+ffmpeg -f x11grab -video_size 640x360 -framerate 10 -i :0.0+$last_x,$last_y -vf format=yuv420p $date_name.mp4
